@@ -1,5 +1,5 @@
 <?php
-
+//amjad al yousif 20220387
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -7,7 +7,6 @@ use App\Models\Student;
 
 class StudentController extends Controller
 {
-    // Display a list of students
     public function index(Request $request)
     {
         $query = $request->get('query');
@@ -33,19 +32,19 @@ class StudentController extends Controller
     
         return view('index', compact('students')); 
     }
-    // Show the form to create a new student
+    
     public function create()
     {
         return view('create');
     }
     public function search(Request $request)
     {
-        // This is for handling the AJAX request for live filtering
+       
         return $this->index($request);  
     }
     
 
-    // Store a newly created student
+   
     public function store(Request $request)
     {
         $request->validate([
@@ -53,7 +52,7 @@ class StudentController extends Controller
             'age'  => 'required|integer|min:1|max:100',
         ]);
     
-        // Create the student record
+     
         Student::create([
             'name' => $request->name,
             'age'  => $request->age,
@@ -64,7 +63,7 @@ class StudentController extends Controller
             ]);
         }
     
-        // If not AJAX, redirect as usual
+        
         return redirect()->route('students.index')->with('success', 'Student added successfully!');
      }
     

@@ -6,7 +6,7 @@
 <div class="container">
     <h2>Students</h2>
 
-    <!-- Search and Filter Form -->
+  
     <div class="row mb-3">
         <div class="col-md-4">
             <input type="text" id="search" class="form-control" placeholder="Search by name...">
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <!-- Table to Display Students -->
+  
     <table class="table">
         <thead>
             <tr>
@@ -42,41 +42,41 @@
         </tbody>
     </table>
 
-    <!-- Link to Add a New Student -->
+   
     <a href="{{ route('students.create') }}" class="btn btn-success">Add New Student</a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function () {
-    // Function to fetch students based on search and filter criteria
+  
     function fetchStudents() {
         let query = $('#search').val();
         let min_age = $('#min_age').val();
         let max_age = $('#max_age').val();
 
         $.ajax({
-            url: "{{ route('students.search') }}",  // The route for the search functionality
-            type: "GET",  // Make a GET request
+            url: "{{ route('students.search') }}",  
+            type: "GET",  
             data: {
                 query: query,
                 min_age: min_age,
                 max_age: max_age
             },
             success: function (response) {
-                $('#student-table').html(response);  // Update the table with filtered data
+                $('#student-table').html(response);  
             }
         });
     }
 
-    // Trigger the search when typing in the search field
+   
     $('#search').on('keyup', function () {
-        fetchStudents();  // Fetch students when a key is pressed
+        fetchStudents();  
     });
 
-    // Trigger the search when clicking the filter button
+    
     $('#filter-btn').on('click', function () {
-        fetchStudents();  // Fetch students when the filter button is clicked
+        fetchStudents();  
     });
 });
 </script>
